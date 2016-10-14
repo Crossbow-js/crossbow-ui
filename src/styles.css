@@ -1,1 +1,169 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(assets/icons/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(assets/icons/MaterialIcons-Regular.woff2) format('woff2'),
+    url(assets/icons/MaterialIcons-Regular.woff) format('woff'),
+    url(assets/icons/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-user-select: none;
+    vertical-align: middle;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+body {
+    font-family: Open sans, Helvetica, sans-serif;
+    background: #133864;
+    color: white;
+    margin: 0;
+}
+
+p {
+    margin-top: 0;
+}
+
+.site-header {
+    padding: 1rem; }
+
+.site-main {
+    background: #0e1a28; }
+
+.task-list {
+    margin: 0;
+    list-style: none;
+    padding: 0; }
+
+.task-list__item {
+    background: #04264b;
+    border-bottom: 1px solid #174479;
+}
+
+.task-list__item-header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.task-list__item .icon {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.icon {
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon .material-icons {
+    position: absolute;
+}
+
+.icon--bg .material-icons {
+    color: black;
+}
+.icon--bg {}
+
+.icon--bg-complete {
+    background: greenyellow;
+}
+.icon--bg-idle     {
+    background: mediumpurple;
+    opacity: 0.3;
+}
+.icon--bg-error    {
+    background: red;
+}
+.icon--bg-active   {
+    background: #2196f3;
+}
+
+.task-list__item .svg-icon:hover {
+    color: greenyellow;
+    border-color: greenyellow;
+}
+
+.task-list__toggle {
+    border: 2px solid white;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.task-list__toggle .icon {
+    position: absolute;
+    display: block;
+}
+
+.task-list__toggle:hover {
+    color: greenyellow;
+    border-color: greenyellow;
+}
+
+.task-list__item--expanded .task-list__toggle {
+    color: greenyellow;
+    border-color: greenyellow;
+    transform: scaleY(-1);
+}
+
+.task-list__actions {
+    width: 100%;
+    background: #071625;
+    padding: 1rem;
+}
+
+.task-list__runnables {
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.runnables {
+
+}
+
+.runnables__item {
+    padding: .5rem;
+}
+
+.svg-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: relative;
+}

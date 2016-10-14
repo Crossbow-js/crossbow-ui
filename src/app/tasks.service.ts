@@ -1,9 +1,58 @@
-import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from "rxjs";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {SequenceItem} from "crossbow/dist/task.sequence.factories";
+import {Task} from "crossbow/dist/task.resolve";
+
+export interface IncomingTask {
+    name: string
+    runner: {
+        tasks: Task[]
+        sequence: SequenceItem[]
+    }
+}
 
 @Injectable()
 export class TasksService {
-  tasks$ = Observable.interval(1000);
-  constructor() { }
 
+    task$: Subject<IncomingTask[]>;
+    execute (tasks: Task[]) {
+        console.log('executing');
+    }
+
+    constructor () {
+
+        var socket = window['io']('http://localhost:4000');
+        this.task$ = new BehaviorSubject<IncomingTask[]>([]);
+
+        socket.on('TopLevelTasks', (_tasks: IncomingTask[]) => {
+            this.task$.next(_tasks);
+        });
+
+        // const execReport$ = Observable.fromEvent(socket, 'execute-report');
+        // const complete$   = execReport$.filter(x => x.data.type === 'Complete');
+        //
+        // function execute (tasks) {
+        //
+        //     const id = '01';
+        //
+        //     return Observable
+        //         .just(true)
+        //         .do(x => {
+        //             socket.emit('execute', {
+        //                 id,
+        //                 cli: {
+        //                     input: ['run'].concat(tasks),
+        //                     flags: {}
+        //                 }
+        //             });
+        //         })
+        //         .flatMap(function () {
+        //             return execReport$
+        //                 .filter(x => x.origin === id)
+        //                 .takeUntil(complete$.filter(x => x.origin === id));
+        //         }).map(x => x.data);
+        // }
+
+    }
 }
