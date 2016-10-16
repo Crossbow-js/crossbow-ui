@@ -1,0 +1,8 @@
+tasks:
+  build-js:
+    - '@sh ls'
+    - '@sh sleep 1'
+  build-css:
+    - '@sh sleep 3'
+    - '@sh sleep 1'
+    - '@sh sleep 2'
