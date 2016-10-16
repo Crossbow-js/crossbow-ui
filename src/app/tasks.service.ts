@@ -3,6 +3,7 @@ import {Observable, Subject} from "rxjs";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {SequenceItem} from "crossbow/dist/task.sequence.factories";
 import {Task} from "crossbow/dist/task.resolve";
+const io = require("socket.io-client/socket.io.js");
 
 export interface IncomingTask {
     name: string
@@ -22,7 +23,7 @@ export class TasksService {
 
     constructor () {
 
-        var socket = window['io']('http://localhost:4000');
+        var socket = io('http://localhost:4000');
         this.task$ = new BehaviorSubject<IncomingTask[]>([]);
 
         socket.on('TopLevelTasks', (_tasks: IncomingTask[]) => {
