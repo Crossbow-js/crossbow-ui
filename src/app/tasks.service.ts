@@ -17,16 +17,17 @@ export interface IncomingTask {
 export class TasksService {
 
     task$: Subject<IncomingTask[]>;
+    socket: SocketIOClient.Socket;
     execute (tasks: Task[]) {
         console.log('executing');
     }
 
     constructor () {
 
-        var socket = io('http://localhost:4000');
+        this.socket = io('http://localhost:4000');
         this.task$ = new BehaviorSubject<IncomingTask[]>([]);
 
-        socket.on('TopLevelTasks', (_tasks: IncomingTask[]) => {
+        this.socket.on('TopLevelTasks', (_tasks: IncomingTask[]) => {
             this.task$.next(_tasks);
         });
 
