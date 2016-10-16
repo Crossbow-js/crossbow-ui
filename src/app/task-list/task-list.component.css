@@ -1,41 +1,41 @@
-.task-list__item .svg-icon:hover {
-    color: greenyellow;
-    border-color: greenyellow;
-}
+/*.task-list__item .svg-icon:hover {*/
+    /*color: greenyellow;*/
+    /*border-color: greenyellow;*/
+/*}*/
 
-.task-list__toggle {
-    border: 2px solid white;
-    border-radius: 100%;
-    width: 20px;
-    height: 20px;
-    position: relative;
-}
+/*.task-list__toggle {*/
+    /*border: 2px solid white;*/
+    /*border-radius: 100%;*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*position: relative;*/
+/*}*/
 
-.task-list__toggle .icon {
-    position: absolute;
-    display: block;
-}
+/*.task-list__toggle .icon {*/
+    /*position: absolute;*/
+    /*display: block;*/
+/*}*/
 
-.task-list__toggle:hover {
-    color: greenyellow;
-    border-color: greenyellow;
-}
+/*.task-list__toggle:hover {*/
+    /*color: greenyellow;*/
+    /*border-color: greenyellow;*/
+/*}*/
 
-.task-list__item--expanded .task-list__toggle {
-    color: greenyellow;
-    border-color: greenyellow;
-    transform: scaleY(-1);
-}
+/*.task-list__item--expanded .task-list__toggle {*/
+    /*color: greenyellow;*/
+    /*border-color: greenyellow;*/
+    /*transform: scaleY(-1);*/
+/*}*/
 
-.task-list__actions {
-    width: 100%;
-    background: #071625;
-    padding: 1rem;
-}
+/*.task-list__actions {*/
+    /*width: 100%;*/
+    /*background: #071625;*/
+    /*padding: 1rem;*/
+/*}*/
 
-.task-list__runnables {
-    width: 100%;
-    margin: 0;
-    list-style: none;
-    padding: 0;
-}
+/*.task-list__runnables {*/
+    /*width: 100%;*/
+    /*margin: 0;*/
+    /*list-style: none;*/
+    /*padding: 0;*/
+/*}*/
