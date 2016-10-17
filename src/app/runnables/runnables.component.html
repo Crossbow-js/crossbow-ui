@@ -1,0 +1,11 @@
+<ul class="task-list__runnables runnables" [ngClass]="'runnables-level--' + level">
+    <li *ngFor="let seqItem of seq" class="runnables__item">
+        <div *ngIf="seqItem.type === 'Task'">
+            {{seqItem.task.taskName}}
+        </div>
+        <div *ngIf="seqItem.type === 'SeriesGroup'">
+            <strong>{{seqItem.taskName}}</strong>
+            <app-runnables [seq]="seqItem.items" [level]="level + 1"></app-runnables>
+        </div>
+    </li>
+</ul>

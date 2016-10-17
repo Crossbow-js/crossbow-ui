@@ -9,6 +9,8 @@ import {IncomingTask} from "../tasks.service";
 })
 export class TaskItemComponent implements OnInit {
 
+    @Input() task: IncomingTask;
+
     constructor() {
     }
 

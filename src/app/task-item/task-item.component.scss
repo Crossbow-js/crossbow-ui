@@ -10,3 +10,10 @@
 .task-list__runnables {
     @include list-reset;
 }
+
+
+
+@keyframes rotate {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(260deg)}
+}

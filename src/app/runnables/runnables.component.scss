@@ -1,0 +1,10 @@
+@import "../../shared/scss/mixins";
+
+.runnables {
+    @include list-reset;
+}
+
+.runnables__item {
+    padding: .5rem;
+    border-left: 3px solid blue;
+}
