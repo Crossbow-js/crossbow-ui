@@ -5,7 +5,6 @@ import "rxjs/add/observable/merge";
 import "rxjs/add/observable/fromEvent";
 import {SequenceItem} from "crossbow/dist/task.sequence.factories";
 import {Task} from "crossbow/dist/task.resolve";
-import {NextObserver} from "rxjs/Observer";
 const io = require("socket.io-client/socket.io.js");
 
 export interface IncomingTask {

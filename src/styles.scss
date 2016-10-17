@@ -1,32 +1,11 @@
 @import "shared/scss/global";
+@import "shared/scss/mixins";
 
 .site-header {
     padding: 1rem; }
 
 .site-main {
     background: #0e1a28; }
-
-.task-list {
-    margin: 0;
-    list-style: none;
-    padding: 0; }
-
-.task-list__item {
-    background: #04264b;
-    border-bottom: 1px solid #174479;
-}
-
-.task-list__item-header {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.task-list__item .icon {
-    margin-left: auto;
-    flex-shrink: 0;
-}
 
 .icon {
     border-radius: 100%;

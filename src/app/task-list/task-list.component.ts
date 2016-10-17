@@ -11,34 +11,17 @@ import {TasksService, IncomingTask, SocketConnection} from "../tasks.service";
 <ul class="task-list" *ngIf="connection.status">
     <li *ngFor="let task of tasks.task$ | async" class="task-list__item" 
     [ngClass]="{'task-list__item--expanded': isExpanded(task)}">
-    
         <div class="task-list__item-header">
             <pre>{{task.name}}</pre>
             <span class="icon task-list__toggle" (click)="expand(task)">
                 <i class="material-icons">expand_more</i>
             </span>
         </div>
-        
-        <div class="task-list__actions" *ngIf="isExpanded(task)">
-            <p>Tasks Ready 
-                <span class="icon icon--bg icon--bg-complete">
-                    <i class="material-icons">play_circle_filled</i>
-                </span>
-            </p>
-            <ul class="task-list__runnables runnables">
-                <li *ngFor="let seqItem of task.runner.sequence[0].items" class="runnables__item">
-                    <span class="icon icon--bg icon--bg-idle">
-                        <i class="material-icons">more_horiz</i>
-                    </span>
-                    {{seqItem.stats}}
-                    {{seqItem.task.taskName}}
-                </li>  
-            </ul>
-        </div>
+        <app-task-item *ngIf="isExpanded(task)" [task]="task"></app-task-item>
     </li>
 </ul>
 `,
-    styleUrls: ['./task-list.component.css']
+    styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
 
@@ -49,7 +32,7 @@ export class TaskListComponent implements OnInit {
         tasks.connection$.subscribe(x => this.connection = x);
     }
 
-    isExpanded(task): boolean {
+    isExpanded(task: IncomingTask): boolean {
         return this.expanded.filter(x => x === task.name).length > 0;
     }
 

@@ -1,0 +1,16 @@
+<div>
+    <p>Tasks Ready
+        <span class="icon icon--bg icon--bg-complete">
+            <i class="material-icons">play_circle_filled</i>
+        </span>
+    </p>
+    <ul class="task-list__runnables runnables">
+        <li *ngFor="let seqItem of task.runner.sequence[0].items" class="runnables__item">
+                <span class="icon icon--bg icon--bg-idle">
+                    <i class="material-icons">more_horiz</i>
+                </span>
+            {{seqItem.stats}}
+            {{seqItem.task.taskName}}
+        </li>
+    </ul>
+</div>

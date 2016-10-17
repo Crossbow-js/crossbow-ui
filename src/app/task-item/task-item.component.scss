@@ -1,0 +1,12 @@
+@import "../../shared/scss/mixins";
+
+:host {
+    display: block;
+    width: 100%;
+    background: #071625;
+    padding: 1rem;
+}
+
+.task-list__runnables {
+    @include list-reset;
+}
