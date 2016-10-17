@@ -1,10 +1,22 @@
 <ul class="task-list__runnables runnables" [ngClass]="'runnables-level--' + level">
-    <li *ngFor="let seqItem of seq" class="runnables__item">
+    <li *ngFor="let seqItem of seq" class="runnables__item" [ngClass]="'runnables__item--' + seqItem.type">
         <div *ngIf="seqItem.type === 'Task'">
-            {{seqItem.task.taskName}}
+            <span class="runnables__item-title"
+                  [ngClass]="[
+                    'runnables__item-title--' + seqItem.type,
+                    'runnables__item-title--level-' + level
+                  ]">
+                {{seqItem.task.taskName}}
+            </span>
         </div>
         <div *ngIf="seqItem.type === 'SeriesGroup'">
-            <strong>{{seqItem.taskName}}</strong>
+            <span class="runnables__item-title"
+                  [ngClass]="[
+                    'runnables__item-title--' + seqItem.type,
+                    'runnables__item-title--level-' + level
+                  ]">
+                {{seqItem.taskName}} <span class="runnables__item-title__label">SERIES ({{seqItem.items.length}})</span>
+            </span>
             <app-runnables [seq]="seqItem.items" [level]="level + 1"></app-runnables>
         </div>
     </li>

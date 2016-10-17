@@ -1,19 +1,9 @@
 @import "../../shared/scss/mixins";
+@import "../../shared/scss/vars";
 
 :host {
     display: block;
     width: 100%;
-    background: #071625;
+    background: $blue-dk;
     padding: 1rem;
-}
-
-.task-list__runnables {
-    @include list-reset;
-}
-
-
-
-@keyframes rotate {
-    from {transform: rotate(0deg)}
-    to {transform: rotate(260deg)}
 }

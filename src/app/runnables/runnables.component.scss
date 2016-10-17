@@ -1,10 +1,91 @@
+@import "../../shared/scss/vars";
 @import "../../shared/scss/mixins";
+
+$line-color: $blue;
 
 .runnables {
     @include list-reset;
 }
 
 .runnables__item {
-    padding: .5rem;
-    border-left: 3px solid blue;
+    //font-family: monospace;
+    padding-left: .8rem;
+    position: relative;
+
+    &:after {
+        position: absolute;
+        content: " ";
+        width: 1px;
+        height: 100%;
+        display: block;
+        background: $line-color;
+        top: 0;
+        left: 0;
+
+    }
 }
+
+.runnables__item--Task {
+    //background: #14191f;
+}
+.runnables__item--SeriesGroup {}
+.runnables__item--ParallelGroup {}
+
+.runnables__item-title {
+    display: block;
+    padding: .5em 0;
+}
+
+.runnables__item-title__label {
+    color: $grey-dk;
+    font-size: .5em;
+    text-transform: uppercase;
+    font-family: $sans;
+    letter-spacing: 1.5px;
+    vertical-align: middle;
+}
+
+.runnables-level--1 {}
+.runnables-level--2 {}
+.runnables-level--4 {}
+
+.runnables__item-title--Task {
+    font-family: monospace;
+    font-size: .8em;
+    color: #7D77CA;
+    position: relative;
+
+    &:after {
+        content: " ";
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        display: block;
+        background: $blue-dk;
+        border: 1px solid $blue-lt;
+        top: 9px;
+        border-radius: 50%;
+        left: -16px;
+        z-index: 1;
+    }
+}
+
+.runnables__item-title--SeriesGroup {
+    font-family: monospace;
+    position: relative;
+
+    &:after {
+        content: " ";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        display: block;
+        background: $blue-dk;
+        border: 1px solid $blue-lt;
+        top: 10px;
+        border-radius: 50%;
+        left: -18px;
+        z-index: 1;
+    }
+}
+.runnables__item-title--ParallelGroup {}

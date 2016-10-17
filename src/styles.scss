@@ -1,11 +1,12 @@
 @import "shared/scss/global";
 @import "shared/scss/mixins";
+@import "shared/scss/vars";
 
 .site-header {
     padding: 1rem; }
 
 .site-main {
-    background: #0e1a28; }
+    background: $blue; }
 
 .icon {
     border-radius: 100%;

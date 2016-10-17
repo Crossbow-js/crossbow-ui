@@ -1,3 +1,6 @@
+@import "../../shared/scss/vars";
+@import "../../shared/scss/mixins";
+
 .task-list {
     margin: 0;
     list-style: none;
@@ -5,8 +8,8 @@
 }
 
 .task-list__item {
-    background: #04264b;
-    border-bottom: 1px solid #174479;
+    background: $blue;
+    border-bottom: 1px solid $blue-lt;
 }
 
 .task-list__item-header {

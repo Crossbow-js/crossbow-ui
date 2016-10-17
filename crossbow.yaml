@@ -2,7 +2,6 @@ tasks:
   deploy:
     - commit
     - rsync
-
   rsync:
     - '@sh rsync -avcsd root@192.168.1.2 --delete'
   commit:
@@ -20,4 +19,3 @@ tasks:
   build-css:
     - '@sh sleep 3'
     - '@sh sleep 1'
-    - '@sh sleep 2'
