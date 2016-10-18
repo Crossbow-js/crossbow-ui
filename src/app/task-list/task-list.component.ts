@@ -17,7 +17,7 @@ import {TasksService, IncomingTask, SocketConnection} from "../tasks.service";
                 <i class="material-icons">expand_more</i>
             </span>
         </div>
-        <app-task-item *ngIf="isExpanded(task)" [task]="task"></app-task-item>
+        <app-task-item *ngIf="isExpanded(task)" [task]="task" (outgoing)="incoming($event)"></app-task-item>
     </li>
 </ul>
 `,
@@ -42,6 +42,15 @@ export class TaskListComponent implements OnInit {
             this.expanded = this.expanded.filter(x => x !== task.name);
         } else {
             this.expanded.push(task.name);
+        }
+    }
+
+    incoming (incomingEvent: {type: string, data: IncomingTask}) {
+        if (incomingEvent.type === 'execute') {
+            this.tasks.execute(incomingEvent.data)
+                .subscribe(x => {
+                    console.log(x);
+                });
         }
     }
 

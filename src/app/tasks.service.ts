@@ -3,8 +3,12 @@ import {Observable, Subject} from "rxjs";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import "rxjs/add/observable/merge";
 import "rxjs/add/observable/fromEvent";
+import "rxjs/add/observable/of";
 import {SequenceItem} from "crossbow/dist/task.sequence.factories";
 import {Task} from "crossbow/dist/task.resolve";
+import {TaskReport} from "crossbow/dist/task.runner";
+import {RunComplete, RunCommandReport, RunCommandCompletionReport} from "crossbow/dist/command.run.execute";
+import {RunCommandSetup} from "crossbow/dist/command.run";
 const io = require("socket.io-client/socket.io.js");
 
 export interface IncomingTask {
@@ -20,17 +24,20 @@ export interface SocketConnection {
     status: boolean
 }
 
+export interface IncomingExecReport {
+    origin: string,
+    data: any
+}
+
 @Injectable()
 export class TasksService {
 
     task$: Subject<IncomingTask[]>;
     socket: SocketIOClient.Socket;
+    execReport$: Observable<IncomingExecReport>;
+    complete$: Observable<IncomingExecReport>;
     connection$ = new BehaviorSubject<SocketConnection>({type: "idle", status: false});
     target = 'http://localhost:4000';
-
-    execute (tasks: Task[]) {
-        console.log('executing');
-    }
 
     constructor () {
 
@@ -51,30 +58,28 @@ export class TasksService {
             this.task$.next(_tasks);
         });
 
-        // const execReport$ = Observable.fromEvent(socket, 'execute-report');
-        // const complete$   = execReport$.filter(x => x.data.type === 'Complete');
-        //
-        // function execute (tasks) {
-        //
-        //     const id = '01';
-        //
-        //     return Observable
-        //         .just(true)
-        //         .do(x => {
-        //             socket.emit('execute', {
-        //                 id,
-        //                 cli: {
-        //                     input: ['run'].concat(tasks),
-        //                     flags: {}
-        //                 }
-        //             });
-        //         })
-        //         .flatMap(function () {
-        //             return execReport$
-        //                 .filter(x => x.origin === id)
-        //                 .takeUntil(complete$.filter(x => x.origin === id));
-        //         }).map(x => x.data);
-        // }
+        this.execReport$ = Observable.fromEvent<IncomingExecReport>(this.socket, 'execute-report');
+        this.complete$   = this.execReport$.filter(x => x.data.type === 'Complete');
+    }
 
+    execute (incomingTask: IncomingTask) {
+
+        const id = '01';
+
+        return Observable.of(true)
+            .do(x => {
+                this.socket.emit('execute', {
+                    id,
+                    cli: {
+                        input: ['run'].concat(incomingTask.name),
+                        flags: {}
+                    }
+                });
+            })
+            .flatMap(() => {
+                return this.execReport$
+                    .filter(x => x.origin === id)
+                    .takeUntil(this.complete$.filter(x => x.origin === id));
+            }).map(x => x.data);
     }
 }
