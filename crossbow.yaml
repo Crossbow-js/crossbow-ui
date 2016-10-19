@@ -5,7 +5,7 @@ tasks:
     - build-all
     - git
   git:
-    - '@sh git diff'
+    - '@sh echo "Some git thing"'
   build-all:
     - build-js
     - build-css
@@ -13,5 +13,5 @@ tasks:
     - '@sh ls'
     - '@sh sleep 1'
   build-css:
-    - '@sh sleep 3'
-    - '@sh sleep 1'
+    - '@sh echo 1'
+    - '@sh echo 2'

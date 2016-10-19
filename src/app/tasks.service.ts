@@ -38,6 +38,7 @@ export class TasksService {
     complete$: Observable<IncomingExecReport>;
     connection$ = new BehaviorSubject<SocketConnection>({type: "idle", status: false});
     target = 'http://localhost:4000';
+    id = 1;
 
     constructor () {
 
@@ -60,16 +61,18 @@ export class TasksService {
 
         this.execReport$ = Observable.fromEvent<IncomingExecReport>(this.socket, 'execute-report');
         this.complete$   = this.execReport$.filter(x => x.data.type === 'Complete');
+        this.execReport$.subscribe(x => {
+            console.log(`ID:`, x.origin, x.data.type);
+        });
     }
 
     execute (incomingTask: IncomingTask) {
 
-        const id = '01';
-
+        const thisId = String(this.id++);
         return Observable.of(true)
             .do(x => {
                 this.socket.emit('execute', {
-                    id,
+                    id: thisId,
                     cli: {
                         input: ['run'].concat(incomingTask.name),
                         flags: {}
@@ -77,9 +80,10 @@ export class TasksService {
                 });
             })
             .flatMap(() => {
-                return this.execReport$
-                    .filter(x => x.origin === id)
-                    .takeUntil(this.complete$.filter(x => x.origin === id));
-            }).map(x => x.data);
+                return this.execReport$.filter(x => {
+                    return x.origin === thisId;
+                });
+            })
+            .map(x => x.data)
     }
 }

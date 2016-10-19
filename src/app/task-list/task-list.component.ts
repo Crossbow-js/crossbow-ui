@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TasksService, IncomingTask, SocketConnection} from "../tasks.service";
+import {RunCommandReport} from "crossbow/dist/command.run.execute";
+import {TaskReport} from "crossbow/dist/task.runner";
 
 @Component({
     selector: 'app-task-list',
@@ -27,6 +29,7 @@ export class TaskListComponent implements OnInit {
 
     expanded: string[] = [];
     connection: SocketConnection;
+    stats = {};
 
     constructor(private tasks: TasksService) {
         tasks.connection$.subscribe(x => this.connection = x);
@@ -48,8 +51,10 @@ export class TaskListComponent implements OnInit {
     incoming (incomingEvent: {type: string, data: IncomingTask}) {
         if (incomingEvent.type === 'execute') {
             this.tasks.execute(incomingEvent.data)
-                .subscribe(x => {
-                    console.log(x);
+                .subscribe((x) => {
+                    if (x.type === 'TaskReport') {
+                        this.stats[x.data.item.seqUID] = x.data.stats;
+                    }
                 });
         }
     }
