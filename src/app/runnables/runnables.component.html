@@ -1,5 +1,9 @@
 <ul class="task-list__runnables runnables" [ngClass]="'runnables-level--' + level">
-    <li *ngFor="let seqItem of seq" class="runnables__item" [ngClass]="'runnables__item--' + seqItem.type">
+    <li *ngFor="let seqItem of seq" class="runnables__item"
+        [ngClass]="[
+            'runnables__item--' + seqItem.type,
+            seqItem.stats?.completed ? 'runnables__item--completed' : ''
+        ]">
         <div *ngIf="seqItem.type === 'Task'">
             <span class="runnables__item-title"
                   [ngClass]="[

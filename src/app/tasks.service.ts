@@ -13,6 +13,7 @@ const io = require("socket.io-client/socket.io.js");
 
 export interface IncomingTask {
     name: string
+    expanded?: boolean
     runner: {
         tasks: Task[]
         sequence: SequenceItem[]

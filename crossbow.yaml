@@ -12,6 +12,8 @@ tasks:
   build-js:
     - '@sh ls'
     - '@sh sleep 1'
+    - '@sh sleep 2'
+    - '@sh sleep 3'
   build-css:
     - '@sh echo 1'
     - '@sh echo 2'
